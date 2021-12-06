@@ -1,6 +1,6 @@
 import { Solution } from '../../utilities/solver.ts';
 
-export default class Day03 implements Solution {
+export default class Day05 implements Solution {
 	solvePart1(input: string[]) {
 		const coords = input
 			.map((i) => i.split(' -> ').map((p) => p.split(',').map((z) => parseInt(z))))

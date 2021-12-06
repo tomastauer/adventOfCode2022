@@ -2,7 +2,7 @@ import { Solution } from '../../utilities/solver.ts';
 
 type Bingo = { n: number; drawn: boolean }[];
 
-export default class Day03 implements Solution {
+export default class Day04 implements Solution {
 	solvePart1(input: string[]) {
 		const [numbers, ...boards] = input.join('\n').split('\n\n');
 		const bingos = boards.map((b) =>
