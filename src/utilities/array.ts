@@ -38,3 +38,21 @@ export function areAllItemsSame<T>(items: T[]) {
 export function sum(items: number[]) {
 	return items.reduce((agg, curr) => agg + curr, 0);
 }
+
+export function addBorder(array: number[][], borderValue: number) {
+	const result: number[][] = [];
+	for(let y = 0; y < array.length+2;y++) {
+		const line = [borderValue];
+		for(let x = 0; x < array[0].length; x++) {
+			if(y === 0 || y === array.length+1) {
+				line.push(borderValue);
+			} else {
+				line.push(array[y-1][x]);
+			}
+		}
+		line.push(borderValue);
+		result.push(line);
+	}
+
+	return result;
+}
