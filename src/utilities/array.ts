@@ -1,8 +1,8 @@
 export function groupBy<T>(
 	items: T[],
 	selector: (item: T) => string | number,
-): { [key: string]: T[] } {
-	return items.reduce((agg: { [key: string]: T[] }, curr) => {
+): Record<string, T[]> {
+	return items.reduce((agg: Record<string, T[]>, curr) => {
 		const s = selector(curr);
 		(agg[s] = agg[s] || []).push(curr);
 		return agg;
