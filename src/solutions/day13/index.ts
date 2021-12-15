@@ -51,7 +51,7 @@ export default class Day13 implements Solution {
 		const maxX = Math.max(...dots.map(([x]) => x));
 		const maxY = Math.max(...dots.map(([, y]) => y));
 
-		const grid = new Array(maxY + 1).fill('.').map((_) => new Array(maxX + 1).fill('.'));
+		const grid = new Array(maxY + 1).fill('.').map(() => new Array(maxX + 1).fill('.'));
 
 		for (let y = 0; y < grid.length; y++) {
 			for (let x = 0; x < grid[y].length; x++) {

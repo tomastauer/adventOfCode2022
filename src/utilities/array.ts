@@ -39,7 +39,7 @@ export function sum(items: number[]) {
 	return items.reduce((agg, curr) => agg + curr, 0);
 }
 
-export function addBorder(array: number[][], borderValue: number) {
+export function addBorder(array: number[][], borderValue: number): number[][] {
 	const result: number[][] = [];
 	for(let y = 0; y < array.length+2;y++) {
 		const line = [borderValue];
