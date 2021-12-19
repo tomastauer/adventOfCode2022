@@ -56,3 +56,9 @@ export function addBorder(array: number[][], borderValue: number): number[][] {
 
 	return result;
 }
+
+export function makePairs<T>(array: T[]): [T,T][] {
+	return array.flatMap(
+		(v) => array.filter(q => q !== v).map(w => [v, w]) as [T, T][]
+	);
+}
