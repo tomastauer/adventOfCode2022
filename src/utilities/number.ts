@@ -6,3 +6,7 @@ export function isBetween(
 	const n = Number(value);
 	return n >= lowerBound && n <= upperBound;
 }
+
+export function range(from: number, to: number) {
+	return new Array(to-from + 1).fill(0).map((_,i) => i + from);
+}
