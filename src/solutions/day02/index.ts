@@ -1,57 +1,46 @@
 import { Solution } from '../../utilities/solver.ts';
 
-export default class Day02 implements Solution {
+
+export default class Day01 implements Solution {
+	
+	// rock, paper, scissors
+
+	result(them: 'A' | 'B' | 'C', me: 'A' | 'B' | 'C') {
+		switch(them) {
+			case 'A':
+				return me === 'A' ? 3 : me === 'B' ? 6 : 0;
+			case 'B':
+				return me === 'A' ? 0 : me === 'B' ? 3 : 6;
+			case 'C':
+				return me === 'A' ? 6 : me === 'B' ? 0 : 3;
+		}
+	}
+
 	solvePart1(input: string[]) {
-		let x = 0;
-		let depth = 0;
+		return input.reduce((acc, curr) => {
+			const [them, me] = curr.split(' ');
+			const mappedMe = me === 'X' ? 'A' : me === 'Y' ? 'B' : 'C';
 
-		input
-			.map((i) => {
-				const [command, distance] = i.split(' ');
-				return { command, distance: parseInt(distance) };
-			})
-			.forEach((c) => {
-				if (c.command === 'forward') {
-					x += c.distance;
-				}
+			acc += this.result(them as 'A' | 'B' | 'C', mappedMe) + mappedMe.charCodeAt(0) - 64;
 
-				if (c.command === 'down') {
-					depth += c.distance;
-				}
-
-				if (c.command === 'up') {
-					depth -= c.distance;
-				}
-			});
-
-		return x * depth;
+			return acc;
+		}, 0)
 	}
 
 	solvePart2(input: string[]) {
-		let x = 0;
-		let depth = 0;
-		let aim = 0;
+		const map = {
+			'A': { X: 'C', Y: 'A', Z: 'B' },
+			'B': { X: 'A', Y: 'B', Z: 'C' },
+			'C': { X: 'B', Y: 'C', Z: 'A' },
+		}
+	
+		return input.reduce((acc, curr) => {
+			const [them, me] = curr.split(' ');
+			const mappedMe = map[them as 'A' | 'B' | 'C'][me as 'X' | 'Y' | 'Z'];
 
-		input
-			.map((i) => {
-				const [command, distance] = i.split(' ');
-				return { command, distance: parseInt(distance) };
-			})
-			.forEach((c) => {
-				if (c.command === 'forward') {
-					x += c.distance;
-					depth += aim * c.distance;
-				}
+			acc += this.result(them as 'A' | 'B' | 'C', mappedMe as 'A' | 'B' | 'C') + mappedMe.charCodeAt(0) - 64;
 
-				if (c.command === 'down') {
-					aim += c.distance;
-				}
-
-				if (c.command === 'up') {
-					aim -= c.distance;
-				}
-			});
-
-		return x * depth;
+			return acc;
+		}, 0)
 	}
 }
