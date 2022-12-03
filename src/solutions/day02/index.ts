@@ -1,12 +1,10 @@
 import { Solution } from '../../utilities/solver.ts';
 
-
 export default class Day01 implements Solution {
-	
 	// rock, paper, scissors
 
 	result(them: 'A' | 'B' | 'C', me: 'A' | 'B' | 'C') {
-		switch(them) {
+		switch (them) {
 			case 'A':
 				return me === 'A' ? 3 : me === 'B' ? 6 : 0;
 			case 'B':
@@ -21,10 +19,11 @@ export default class Day01 implements Solution {
 			const [them, me] = curr.split(' ');
 			const mappedMe = me === 'X' ? 'A' : me === 'Y' ? 'B' : 'C';
 
-			acc += this.result(them as 'A' | 'B' | 'C', mappedMe) + mappedMe.charCodeAt(0) - 64;
+			acc += this.result(them as 'A' | 'B' | 'C', mappedMe) +
+				mappedMe.charCodeAt(0) - 64;
 
 			return acc;
-		}, 0)
+		}, 0);
 	}
 
 	solvePart2(input: string[]) {
@@ -32,15 +31,19 @@ export default class Day01 implements Solution {
 			'A': { X: 'C', Y: 'A', Z: 'B' },
 			'B': { X: 'A', Y: 'B', Z: 'C' },
 			'C': { X: 'B', Y: 'C', Z: 'A' },
-		}
-	
+		};
+
 		return input.reduce((acc, curr) => {
 			const [them, me] = curr.split(' ');
-			const mappedMe = map[them as 'A' | 'B' | 'C'][me as 'X' | 'Y' | 'Z'];
+			const mappedMe =
+				map[them as 'A' | 'B' | 'C'][me as 'X' | 'Y' | 'Z'];
 
-			acc += this.result(them as 'A' | 'B' | 'C', mappedMe as 'A' | 'B' | 'C') + mappedMe.charCodeAt(0) - 64;
+			acc += this.result(
+				them as 'A' | 'B' | 'C',
+				mappedMe as 'A' | 'B' | 'C',
+			) + mappedMe.charCodeAt(0) - 64;
 
 			return acc;
-		}, 0)
+		}, 0);
 	}
 }

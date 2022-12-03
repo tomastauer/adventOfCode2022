@@ -39,16 +39,23 @@ export function sum(items: number[]) {
 	return items.reduce((agg, curr) => agg + curr, 0);
 }
 
-export function addBorder<T>(array: T[][], borderValue: T, borderWidth=1): T[][] {
+export function addBorder<T>(
+	array: T[][],
+	borderValue: T,
+	borderWidth = 1,
+): T[][] {
 	const result: T[][] = [];
-	for(let y = 0; y < array.length+borderWidth*2;y++) {
+	for (let y = 0; y < array.length + borderWidth * 2; y++) {
 		const line = [];
 
-		for(let x = 0; x < array[0].length + borderWidth*2; x++) {
-			if(y < borderWidth || y >= array.length+borderWidth || x < borderWidth || x>= array[0].length+borderWidth) {
+		for (let x = 0; x < array[0].length + borderWidth * 2; x++) {
+			if (
+				y < borderWidth || y >= array.length + borderWidth ||
+				x < borderWidth || x >= array[0].length + borderWidth
+			) {
 				line.push(borderValue);
 			} else {
-				line.push(array[y-borderWidth][x-borderWidth]);
+				line.push(array[y - borderWidth][x - borderWidth]);
 			}
 		}
 		result.push(line);
@@ -57,13 +64,13 @@ export function addBorder<T>(array: T[][], borderValue: T, borderWidth=1): T[][]
 	return result;
 }
 
-export function removeBorder<T>(array: T[][], borderWidth=1): T[][] {
+export function removeBorder<T>(array: T[][], borderWidth = 1): T[][] {
 	const result: T[][] = [];
-	for(let y = 0; y < array.length-borderWidth*2;y++) {
+	for (let y = 0; y < array.length - borderWidth * 2; y++) {
 		const line = [];
 
-		for(let x = 0; x < array[0].length - borderWidth*2; x++) {
-			line.push(array[y+borderWidth][x+borderWidth]);
+		for (let x = 0; x < array[0].length - borderWidth * 2; x++) {
+			line.push(array[y + borderWidth][x + borderWidth]);
 		}
 		result.push(line);
 	}
@@ -71,8 +78,8 @@ export function removeBorder<T>(array: T[][], borderWidth=1): T[][] {
 	return result;
 }
 
-export function makePairs<T>(array: T[]): [T,T][] {
+export function makePairs<T>(array: T[]): [T, T][] {
 	return array.flatMap(
-		(v) => array.filter(q => q !== v).map(w => [v, w]) as [T, T][]
+		(v) => array.filter((q) => q !== v).map((w) => [v, w]) as [T, T][],
 	);
 }

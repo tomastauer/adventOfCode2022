@@ -8,5 +8,5 @@ export function isBetween(
 }
 
 export function range(from: number, to: number) {
-	return new Array(to-from + 1).fill(0).map((_,i) => i + from);
+	return new Array(to - from + 1).fill(0).map((_, i) => i + from);
 }
