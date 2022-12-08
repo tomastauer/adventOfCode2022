@@ -10,16 +10,19 @@ type Node = {
 
 export default class Day01 implements Solution {
 	getSize(node: Node): number {
-		if(node.type === 'file') {
+		if (node.type === 'file') {
 			return node.size;
 		} else {
-			node.size = node.children.reduce((agg, curr) => agg + this.getSize(curr), 0);
+			node.size = node.children.reduce(
+				(agg, curr) => agg + this.getSize(curr),
+				0,
+			);
 			return node.size;
 		}
 	}
 
 	solvePart1(input: string[]) {
-		const commands = input.join('\n').split('$ ').map(c => c.trim());
+		const commands = input.join('\n').split('$ ').map((c) => c.trim());
 		commands.shift();
 
 		const root: Node = {
@@ -61,7 +64,7 @@ export default class Day01 implements Solution {
 						size: typeOrSize === 'dir' ? 0 : parseInt(typeOrSize),
 					};
 
-					if(item.type === 'dir') {
+					if (item.type === 'dir') {
 						dirs.push(item);
 					}
 
@@ -72,11 +75,14 @@ export default class Day01 implements Solution {
 
 		this.getSize(root);
 
-		return dirs.filter(d => d.size < 100000).reduce((agg, curr) => agg + curr.size, 0);
+		return dirs.filter((d) => d.size < 100000).reduce(
+			(agg, curr) => agg + curr.size,
+			0,
+		);
 	}
 
 	solvePart2(input: string[]) {
-		const commands = input.join('\n').split('$ ').map(c => c.trim());
+		const commands = input.join('\n').split('$ ').map((c) => c.trim());
 		commands.shift();
 
 		const root: Node = {
@@ -118,7 +124,7 @@ export default class Day01 implements Solution {
 						size: typeOrSize === 'dir' ? 0 : parseInt(typeOrSize),
 					};
 
-					if(item.type === 'dir') {
+					if (item.type === 'dir') {
 						dirs.push(item);
 					}
 
@@ -130,6 +136,8 @@ export default class Day01 implements Solution {
 		this.getSize(root);
 		const neededSpace = 30000000 - (70000000 - root.size);
 
-		return dirs.filter(d => d.size > neededSpace).sort((a, b) => a.size - b.size)[0].size;
+		return dirs.filter((d) => d.size > neededSpace).sort((a, b) =>
+			a.size - b.size
+		)[0].size;
 	}
 }
