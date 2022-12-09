@@ -83,3 +83,7 @@ export function makePairs<T>(array: T[]): [T, T][] {
 		(v) => array.filter((q) => q !== v).map((w) => [v, w]) as [T, T][],
 	);
 }
+
+export function makeGrid(height: number, width: number): number[][] {
+	return new Array(height).fill(0).map(() => new Array(width).fill(0));
+}
