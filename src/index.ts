@@ -1,5 +1,5 @@
 import { solve } from './utilities/solver.ts';
 
-const day = 10;
+const day = 11;
 
 console.log(await solve(day));
